@@ -1,9 +1,9 @@
 import sys
 import os
 import pygame 
-from BgAnimation import Sea
 from pygame import mixer
-
+from BgAnimation import Sea
+from Player1 import Player1
 curdirectory = os.path.dirname(__file__)
 
 pygame.init()
@@ -14,9 +14,9 @@ class Vaollyball:
   def __init__(self) -> None:
     self.width = 1200 
     self.height = 650
+    self.fps = 60 
     self.screen = pygame.display.set_mode((self.width,self.height)) 
     self.clock = pygame.time.Clock()
-    self.fps = 60 
     self.is_active = True
     self.icon_img = pygame.image.load(
     os.path.join(curdirectory , 'graphics' , 'images','iconball.png')
@@ -25,7 +25,7 @@ class Vaollyball:
     pygame.display.set_caption("ToopBazi")
     # game objects ==== **** ==== 
     self.sea_obj = Sea(self.screen)
-  
+
   
   def runnig_loop(self):
 
@@ -35,12 +35,11 @@ class Vaollyball:
       self.sea_obj.animation()
       self.grand = pygame.draw.line( 
         self.screen ,
-        (240, 195, 153) 
+        (242, 161, 90) 
         ,(0,self.height)
         ,(self.width , self.height)
         ,55
       )
-
       pygame.display.update()
       self.clock.tick(self.fps) 
 
@@ -53,8 +52,7 @@ class Vaollyball:
         sys.exit()
 
 
-
-def main () :
+def playbg_music():
   # playing backgound music 
   chanel_0 = mixer.Channel(0)
   chanel_1 = mixer.Channel(1)
@@ -63,6 +61,10 @@ def main () :
   chanel_0.play(mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'HB.mp3')),-1)
   chanel_1.play(mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'ocean.mp3')),-1)
 
+
+
+def main () :
+  # playbg_music()
   Vaollyball().runnig_loop() 
 
 

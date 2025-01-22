@@ -19,7 +19,7 @@ class Sea():
 
 
   def animation (self):
-    self.sea_index +=0.05
+    self.sea_index +=0.07
     if self.sea_index >= len(self.bg_sea_list): 
       self.sea_index = 0
     self.sea_surf = self.bg_sea_list[int(self.sea_index)]
