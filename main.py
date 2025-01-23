@@ -25,10 +25,12 @@ class Vaollyball:
     pygame.display.set_caption("ToopBazi")
     # game objects ==== **** ==== 
     self.sea_obj = Sea(self.screen)
+    self.music = Music()
 
   
   def runnig_loop(self):
-
+    self.music.playbg_music()
+    
     while self.is_active :
       self.even_loop()
       self.sea_obj.bilt()
@@ -52,19 +54,29 @@ class Vaollyball:
         sys.exit()
 
 
-def playbg_music():
-  # playing backgound music 
-  chanel_0 = mixer.Channel(0)
-  chanel_1 = mixer.Channel(1)
-  chanel_0.set_volume(0.1)
-  chanel_1.set_volume(0.5)
-  chanel_0.play(mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'HB.mp3')),-1)
-  chanel_1.play(mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'ocean.mp3')),-1)
+class Music : 
+  ocean_bg_sound = mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'ocean.mp3'))
+  game_bg_sound = mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'HB.mp3'))
+  jump_sound_effect = mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'jump.mp3'))
+  ball_bounce = mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'bounce.mp3'))
+  win_sound_effect = mixer.Sound(os.path.join(curdirectory , 'graphics' , 'music' , 'win0.mp3'))
+
+  channels = []
+
+  for i in range(4):
+    channels.append(mixer.Channel(i))
+ 
+
+  def playbg_music(self):
+    # playing backgound music 
+    self.channels[0].set_volume(0.5)
+    self.channels[1].set_volume(0.2)
+    self.channels[0].play(mixer.Sound(self.ocean_bg_sound))
+    self.channels[1].play(mixer.Sound(self.game_bg_sound))
 
 
 
 def main () :
-  # playbg_music()
   Vaollyball().runnig_loop() 
 
 
