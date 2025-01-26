@@ -24,7 +24,7 @@ class Vaollyball:
     pygame.display.set_icon(self.icon_img)
     pygame.display.set_caption("ToopBazi")
     # game objects ==== **** ==== 
-    self.sea_obj = Sea(self.screen)
+    self.sea_obj = Sea(self.screen , curdirectory)
     self.music = Music()
 
   

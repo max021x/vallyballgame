@@ -1,10 +1,12 @@
 import pygame
 from pygame import mixer 
+import os 
 
 pygame.init()
 
 class Sea():
-  def __init__(self , screen):
+  def __init__(self , screen  , curpath):
+    self.curpath = curpath
     self.screen = screen    
     self.bg_sea_list = []
     self.fill_list() 
@@ -14,7 +16,7 @@ class Sea():
 
   def fill_list (self):
     for i in range(0,31):
-      img = pygame.image.load('.\graphics\\bg_sea\\beach'+str(i+1)+'.jpg').convert_alpha()
+      img = pygame.image.load(os.path.join(self.curpath , "graphics\\bg_sea" , "beach"+str(i+1)+'.jpg')).convert_alpha()
       self.bg_sea_list.append(img)
 
 
